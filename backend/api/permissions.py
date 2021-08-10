@@ -43,10 +43,6 @@ class IsAuthorOrReadOnly(BasePermission):
 
 
 class IsSuperUserOrStaffReadOnly(BasePermission):
-    """
-    Object-level permission to only allow Authors of an object to edit it.
-    Assumes the model instance has an `Author` attribute.
-    """
 
     def has_permission(self, request, view):
 
