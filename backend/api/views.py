@@ -1,4 +1,3 @@
-# from django.shortcuts import render
 
 # , RetrieveDestroyAPIView, RetrieveAPIView, DestroyAPIView,  ListAPIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
@@ -9,7 +8,7 @@ from .permissions import IsAuthorOrReadOnly, IsStaffOrReadOnly, IsSuperUserOrSta
 # from rest_framework.authentication import SessionAuthentication
 
 from blog.models import Article
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model  # get User model!
 
 
 # Create your views here.
@@ -28,12 +27,12 @@ class ArticleDetail(RetrieveUpdateDestroyAPIView):
 
 
 class UserList(ListCreateAPIView):
-    queryset = User.objects.all()
+    queryset = get_user_model().objects.all()
     serializer_class = UserSerializers
     permission_classes = (IsSuperUserOrStaffReadOnly,)
 
 
 class UserDetail(RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.all()
+    queryset = get_user_model().objects.all()
     serializer_class = UserSerializers
     permission_classes = (IsSuperUserOrStaffReadOnly,)
