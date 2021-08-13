@@ -2,5 +2,4 @@
 Django Rest Framework ,, sample project
 
 
-> This is a training project
-> That's why there are a lot of commented codes in it
+> This is an educational project That's why there are so many comments and dead codes in it
