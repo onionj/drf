@@ -3,8 +3,8 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
+# from rest_framework.views import APIView
+# from rest_framework.response import Response
 
 from .serializer import ArticleSerializers, UserSerializers
 
@@ -44,19 +44,19 @@ class UserDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsSuperUserOrStaffReadOnly,)
 
 
-class RevokeToken(APIView):
-    permission_classes = (IsAuthenticated,)
+# class RevokeToken(APIView):
+#     permission_classes = (IsAuthenticated,)
 
-    def delete(self, request):
-        request.auth.delete()
-        # return Response({"msg": "Token revoked!"}) # This is not standard but it works
-        return Response(status=204)
+#     def delete(self, request):
+#         request.auth.delete()
+#         # return Response({"msg": "Token revoked!"}) # This is not standard but it works
+#         return Response(status=204)
 
-    # def get(self, request):
-    #     return Response({"method": "get"})
+#     # def get(self, request):
+#     #     return Response({"method": "get"})
 
-    # def post(self, request):
-    #     return Response({"method": "post"})
+#     # def post(self, request):
+#     #     return Response({"method": "post"})
 
-    # def put(self, request):
-    #     return Response({"method": "put"})
+#     # def put(self, request):
+#     #     return Response({"method": "put"})
