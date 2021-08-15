@@ -32,9 +32,6 @@ urlpatterns = [
     path('', include('blog.urls', namespace='blog')),
     path('api/', include('api.urls', namespace='api')),
 
-    # #! JWT
-    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     #! dj-rest-auth + jwt
     path('api/rest-auth/', include('dj_rest_auth.urls')),
@@ -43,12 +40,4 @@ urlpatterns = [
     # and need add confirm template!
     path('api/rest-auth/password/reset/confirm/<uidb64>/<token>/',
          PasswordResetConfirmView.as_view(), name='password_reset_confirm')
-
-    # #! Token
-    # path('api/revoke/', RevokeToken.as_view(), name='revoke-token'), #revoke Token
-    # path('api/token-auth/', obtain_auth_token,
-    #      name='auth-token'),  # login by Token
-
-    # #! session
-    # path('api-auth/', include('rest_framework.urls')), # login by session in B-api
 ]

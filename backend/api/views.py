@@ -42,21 +42,3 @@ class UserDetail(RetrieveUpdateDestroyAPIView):
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializers
     permission_classes = (IsSuperUserOrStaffReadOnly,)
-
-
-# class RevokeToken(APIView):
-#     permission_classes = (IsAuthenticated,)
-
-#     def delete(self, request):
-#         request.auth.delete()
-#         # return Response({"msg": "Token revoked!"}) # This is not standard but it works
-#         return Response(status=204)
-
-#     # def get(self, request):
-#     #     return Response({"method": "get"})
-
-#     # def post(self, request):
-#     #     return Response({"method": "post"})
-
-#     # def put(self, request):
-#     #     return Response({"method": "put"})
