@@ -1,44 +1,30 @@
 
-# , RetrieveDestroyAPIView, RetrieveAPIView, DestroyAPIView,  ListAPIView
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAuthenticated
-
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 
 from .serializer import ArticleSerializers, UserSerializers
 
-from rest_framework.permissions import IsAuthenticated  # IsAdminUser
-from .permissions import IsAuthorOrReadOnly, IsStaffOrReadOnly, IsSuperUserOrStaffReadOnly   # , IsSuperUser
+from .permissions import IsAuthorOrReadOnly, IsStaffOrReadOnly, IsSuperUserOrStaffReadOnly
 
 
 from blog.models import Article
 from django.contrib.auth import get_user_model  # get User model!
 
-# from rest_framework.authentication import SessionAuthentication # for authentication_classes
 
 # Create your views here.
 
-
-class ArticleList(ListCreateAPIView):
+class ArticleViewSet(ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializers
-    # authentication_classes = (SessionAuthentication,)
+
+    def get_permissions(self):
+        if self.action in ['list', 'create']:
+            permission_classes = [IsStaffOrReadOnly]
+        else:
+            permission_classes = [IsStaffOrReadOnly, IsAuthorOrReadOnly]
+        return [permission() for permission in permission_classes]
 
 
-class ArticleDetail(RetrieveUpdateDestroyAPIView):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializers
-    permission_classes = (IsStaffOrReadOnly, IsAuthorOrReadOnly)
-
-
-class UserList(ListCreateAPIView):
-    queryset = get_user_model().objects.all()
-    serializer_class = UserSerializers
-    permission_classes = (IsSuperUserOrStaffReadOnly,)
-
-
-class UserDetail(RetrieveUpdateDestroyAPIView):
+class UserViewSet(ModelViewSet):
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializers
     permission_classes = (IsSuperUserOrStaffReadOnly,)
