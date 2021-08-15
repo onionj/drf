@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
+from dj_rest_auth.views import PasswordResetConfirmView
+
 # from rest_framework.authtoken.views import obtain_auth_token
 # from api.views import RevokeToken
 
@@ -24,11 +27,19 @@ urlpatterns = [
     path('', include('blog.urls', namespace='blog')),
     path('api/', include('api.urls', namespace='api')),
 
+    #! dj-rest-auth
+    path('api/rest-auth/', include('dj_rest_auth.urls')),
+    path('api/rest-auth/registration/',
+         include('dj_rest_auth.registration.urls')),
+    # and need add confirm template!
+    path('api/rest-auth/password/reset/confirm/<uidb64>/<token>/',
+         PasswordResetConfirmView.as_view(), name='password_reset_confirm')
 
-
+    #! Token
     # path('api/revoke/', RevokeToken.as_view(), name='revoke-token'), #revoke Token
     # path('api/token-auth/', obtain_auth_token,
     #      name='auth-token'),  # login by Token
 
+    #!
     # path('api-auth/', include('rest_framework.urls')), # login by session in B-api
 ]

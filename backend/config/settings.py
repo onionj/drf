@@ -41,6 +41,16 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 
+
+    #! third party pakage
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+
+
     'blog.apps.BlogConfig',
     'api.apps.ApiConfig',
 ]
@@ -145,3 +155,9 @@ REST_FRAMEWORK = {
         # oauth
     ]
 }
+
+
+SITE_ID = 1  # for register new user
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
