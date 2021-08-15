@@ -44,11 +44,11 @@ INSTALLED_APPS = [
 
     #! third party pakage
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'dj_rest_auth',
-    'dj_rest_auth.registration',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'dj_rest_auth',
+    # 'dj_rest_auth.registration',
 
 
     'blog.apps.BlogConfig',
@@ -147,17 +147,17 @@ REST_FRAMEWORK = {
         'api.permissions.IsStaffOrReadOnly',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
         # 'rest_framework.authentication.BasicAuthentication',
         # 'rest_framework.authentication.SessionAuthentication',
-        # jwt
+        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         # knox
         # oauth
     ]
 }
 
 
-SITE_ID = 1  # for register new user
+SITE_ID = 1
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
