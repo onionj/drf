@@ -1,13 +1,11 @@
 
+from django.contrib.auth import get_user_model  # get User model!
 from rest_framework.viewsets import ModelViewSet
 
 from .serializer import ArticleSerializers, UserSerializers
-
 from .permissions import IsAuthorOrReadOnly, IsStaffOrReadOnly, IsSuperUserOrStaffReadOnly
 
-
 from blog.models import Article
-from django.contrib.auth import get_user_model  # get User model!
 
 
 # Create your views here.
