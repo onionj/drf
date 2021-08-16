@@ -22,6 +22,8 @@ class ArticleViewSet(ModelViewSet):
         'author__first_name',
         'author__last_name',
     ]
+    ordering_fields = ['id', 'publish', 'status', ]
+    ordering = ['-publish']  # ! default = new to old
 
     def get_permissions(self):
         if self.action in ['list', 'create']:
@@ -36,3 +38,4 @@ class UserViewSet(ModelViewSet):
     serializer_class = UserSerializers
     permission_classes = (IsSuperUserOrStaffReadOnly,)
     filterset_fields = ['id', 'username', 'is_staff', 'is_active', 'email']
+    ordering_fields = ['id', 'last_login', 'is_staff', 'date_joined']
