@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 
+    'blog.apps.BlogConfig',
+    'api.apps.ApiConfig',
 
-    #! third party pakage
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -50,9 +51,8 @@ INSTALLED_APPS = [
     'dj_rest_auth',
     'dj_rest_auth.registration',
 
+    'django_filters',
 
-    'blog.apps.BlogConfig',
-    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
@@ -148,7 +148,10 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'dj_rest_auth.jwt_auth.JWTCookieAuthentication',  # ! dj-rest-auth + JWT
-    ]
+    ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
 }
 
 

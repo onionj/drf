@@ -12,23 +12,9 @@ from blog.models import Article
 
 class ArticleViewSet(ModelViewSet):
     serializer_class = ArticleSerializers
+    queryset = Article.objects.all()
 
-    def get_queryset(self):
-        """
-        Optionally restricts the returned purchases to a given user,
-        by filtering against a `username` query parameter in the URL.
-        """
-        queryset = Article.objects.all()
-
-        status = self.request.query_params.get('status')
-        if status is not None:
-            queryset = queryset.filter(status=status)
-
-        author = self.request.query_params.get('author')
-        if author is not None:
-            queryset = queryset.filter(author__username=author)
-
-        return queryset
+    filterset_fields = ['status', 'author__username']
 
     def get_permissions(self):
         if self.action in ['list', 'create']:
@@ -42,3 +28,4 @@ class UserViewSet(ModelViewSet):
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializers
     permission_classes = (IsSuperUserOrStaffReadOnly,)
+    filterset_fields = ['id', 'username', 'is_staff', 'is_active', 'email']
