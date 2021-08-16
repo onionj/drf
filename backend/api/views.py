@@ -11,8 +11,24 @@ from blog.models import Article
 # Create your views here.
 
 class ArticleViewSet(ModelViewSet):
-    queryset = Article.objects.all()
     serializer_class = ArticleSerializers
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = Article.objects.all()
+
+        status = self.request.query_params.get('status')
+        if status is not None:
+            queryset = queryset.filter(status=status)
+
+        author = self.request.query_params.get('author')
+        if author is not None:
+            queryset = queryset.filter(author__username=author)
+
+        return queryset
 
     def get_permissions(self):
         if self.action in ['list', 'create']:
