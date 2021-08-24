@@ -3,8 +3,14 @@ from blog.models import Article
 from django.contrib.auth import get_user_model
 
 
+class AuthorUsernameField(serializers.RelatedField):
+    def to_representation(self, value):
+        return value.username
+
+
 class ArticleSerializers(serializers.ModelSerializer):
-    # author =
+    author = AuthorUsernameField(read_only=True)
+
     class Meta:
         model = Article
 
