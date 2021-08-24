@@ -16,6 +16,13 @@ class ArticleSerializers(serializers.ModelSerializer):
         # # deny this fields:
         # exclude = ('created', 'updated',)
 
+    def validate_title(self, value):
+        filter_list = ['fuck', 'javascript']
+        for i in filter_list:
+            if i in value:
+                raise serializers.ValidationError(
+                    f"don't use bad words!: {i}")
+
 
 class UserSerializers(serializers.ModelSerializer):
     class Meta:
