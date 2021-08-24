@@ -11,6 +11,4 @@ router.register('articles', ArticleViewSet, basename="articles")
 router.register('users', UserViewSet, basename="users")
 urlpatterns = [
     path("", include(router.urls)),
-    path("authors/<int:pk>/", AuthorRetrieve.as_view(), name='authors-detail'),
-
 ]

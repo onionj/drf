@@ -3,22 +3,8 @@ from blog.models import Article
 from django.contrib.auth import get_user_model
 
 
-class AuthorSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = get_user_model()
-        fields = [
-            'id',
-            'username',
-            'first_name',
-            'last_name',
-        ]
-
-
 class ArticleSerializers(serializers.ModelSerializer):
-    author = AuthorSerializers()
-
-    # author = serializers.HyperlinkedIdentityField(view_name='api:authors-detail', lookup_field='pk') #! bug: author id = post id! why?
-
+    # author =
     class Meta:
         model = Article
 
