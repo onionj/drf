@@ -1,6 +1,6 @@
 from django.urls.conf import include
 from rest_framework import routers
-from .views import UserViewSet, ArticleViewSet, AuthorRetrieve
+from .views import UserViewSet, ArticleViewSet
 from django.urls import path
 
 app_name = 'api'
