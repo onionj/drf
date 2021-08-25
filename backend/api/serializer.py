@@ -35,7 +35,7 @@ class ArticleSerializers(DynamicFieldsMixin, serializers.ModelSerializer):
                     f"don't use bad words!: {i}")
 
 
-class UserSerializers(serializers.ModelSerializer):
+class UserSerializers(DynamicFieldsMixin, serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = '__all__'
