@@ -3,7 +3,7 @@ autopep8==1.5.7
 certifi==2022.12.7
 cffi==1.14.6
 charset-normalizer==2.0.4
-cryptography==39.0.1
+cryptography==41.0.2
 defusedxml==0.7.1
 dj-rest-auth==2.1.11
 Django==3.2.18
